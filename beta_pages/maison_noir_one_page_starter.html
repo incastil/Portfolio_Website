@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Noir — Luxury Restaurant Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="scripts.js" defer></script>
+  <style>
+    :root {
+      --bg: #0e0e10;
+      --surface: #17171b;
+      --surface-2: rgba(255, 255, 255, 0.04);
+      --gold: #c8a96a;
+      --text: #f5f1e8;
+      --muted: #a7a29a;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(200, 169, 106, 0.12), transparent 35%),
+        linear-gradient(180deg, #0e0e10 0%, #09090b 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.72rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 0.95;
+      margin: 0 0 1rem;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 62ch;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .btns {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      backdrop-filter: blur(14px);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(200, 169, 106, 0.35);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .btn.primary {
+      background: var(--gold);
+      color: #121212;
+      border-color: transparent;
+    }
+
+    .btn.primary:hover {
+      background: #d9bf85;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(10, 10, 12, 0.55);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      font: inherit;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 78px);
+      display: grid;
+      align-items: center;
+      overflow: clip;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(14, 14, 16, 0.34), rgba(14, 14, 16, 0.86)),
+        url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=80") center/cover;
+      transform: scale(1.02);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 10%, rgba(200, 169, 106, 0.18), transparent 30%);
+      z-index: -1;
+    }
+
+    .hero-inner {
+      padding: 7rem 0 4rem;
+      max-width: 760px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.8rem, 10vw, 7.5rem);
+      line-height: 0.9;
+      margin: 0 0 1.1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      color: rgba(245, 241, 232, 0.82);
+      font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+      max-width: 60ch;
+      margin: 0 0 1.8rem;
+    }
+
+    .hero-meta {
+      margin-top: 1.4rem;
+      color: rgba(245, 241, 232, 0.72);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-meta span::after {
+      content: "•";
+      margin-left: 1rem;
+      color: rgba(200, 169, 106, 0.85);
+    }
+
+    .hero-meta span:last-child::after {
+      content: "";
+      margin: 0;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 1.5rem;
+      transform: translateX(-50%);
+      color: rgba(245, 241, 232, 0.6);
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    /* Shared cards */
+    .glass {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* Feature cards */
+    .stats {
+      margin-top: -2.4rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      padding: 1.4rem;
+      border-radius: var(--radius);
+    }
+
+    .stat-card h3,
+    .menu-card h3,
+    .visit-card h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+    }
+
+    .stat-card p,
+    .menu-card p,
+    .visit-card p,
+    .about-list li {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Menu */
+    .menu-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .menu-card {
+      padding: 1.35rem;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(200, 169, 106, 0.3);
+    }
+
+    .menu-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+    }
+
+    .menu-head strong {
+      font-size: 1.08rem;
+    }
+
+    .price {
+      color: var(--gold);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* About */
+    .about-media {
+      min-height: 540px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.65)),
+        url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80") center/cover;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .about-content {
+      padding: 1rem 0;
+    }
+
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.4rem 0 0;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .about-list li::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--gold);
+      box-shadow: 0 0 0 6px rgba(200, 169, 106, 0.12);
+      flex: none;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      min-height: 210px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: #111;
+      position: relative;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.28));
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .span-2 {
+      grid-column: span 2;
+    }
+
+    .span-3 {
+      grid-column: span 3;
+    }
+
+    /* Visit */
+    .visit-card {
+      padding: 2rem;
+      border-radius: 28px;
+      border: 1px solid rgba(200, 169, 106, 0.22);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    }
+
+    .visit-grid {
+      margin-top: 1.4rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .visit-grid p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .visit-grid strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+
+      .split,
+      .stats-grid,
+      .menu-grid,
+      .gallery-grid,
+      .visit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-auto-rows: minmax(220px, auto);
+      }
+
+      .span-2,
+      .span-3 {
+        grid-column: auto;
+      }
+
+      .hero-inner {
+        padding-top: 5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 4.5rem 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 16vw, 4.6rem);
+      }
+
+      .hero-meta {
+        gap: 0.5rem 0.8rem;
+      }
+
+      .stats {
+        margin-top: -1.2rem;
+      }
+
+      .visit-card {
+        padding: 1.3rem;
+      }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: var(--surface);
+      padding: 1rem;
+      border-radius: 3px;
+      max-width: 400px;
+      width: 90%;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--gold);
+      background-color: var(--bg);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Maison Noir</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+        <a class="btn primary" href="#visit">Reserve Table</a>
+      </nav>
+      <button class="menu-toggle" type="button">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Refined dining & cocktails</p>
+        <h1>An Elevated Dining Experience</h1>
+        <p>
+          Modern cuisine, refined cocktails, and an atmosphere designed for unforgettable nights.
+        </p>
+        <div class="btns">
+          <a class="btn primary" href="#menu">View Menu</a>
+          <a class="btn" href="#visit">Reserve Table</a>
+        </div>
+        <div class="hero-meta">
+          <span>Open daily</span>
+          <span>Houston, TX</span>
+          <span>5 PM – 1 AM</span>
+        </div>
+      </div>
+      <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <article class="stat-card glass">
+            <p class="eyebrow">Seasonal</p>
+            <h3>Seasonal Menu</h3>
+            <p>Fresh ingredients, updated regularly.</p>
+          </article>
+          <article class="stat-card glass">
+            <p class="eyebrow">Bar</p>
+            <h3>Craft Cocktails</h3>
+            <p>Classic drinks with a modern twist.</p>
+          </article>
+          <article class="stat-card glass">
+            <p class="eyebrow">Events</p>
+            <h3>Private Events</h3>
+            <p>Intimate spaces for special nights.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <p class="eyebrow">Signature Selections</p>
+        <h2 class="section-title">A curated menu built for long dinners, late drinks, and memorable conversations.</h2>
+        <p class="section-copy">Take a look.
+        </p>
+
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="menu-head"><strong>Prime Ribeye</strong><span class="price">$48</span></div>
+            <p>Charcoal-seared with rosemary butter.</p>
+          </article>
+          <article class="menu-card">
+            <div class="menu-head"><strong>Truffle Fries</strong><span class="price">$16</span></div>
+            <p>Crisp, golden, and finished with parmesan.</p>
+          </article>
+          <article class="menu-card">
+            <div class="menu-head"><strong>Burrata &amp; Heirloom Tomato</strong><span class="price">$19</span></div>
+            <p>Creamy burrata, basil oil, aged balsamic.</p>
+          </article>
+          <article class="menu-card">
+            <div class="menu-head"><strong>Maison Old Fashioned</strong><span class="price">$18</span></div>
+            <p>Bourbon, demerara, aromatic bitters.</p>
+          </article>
+          <article class="menu-card">
+            <div class="menu-head"><strong>Velvet Negroni</strong><span class="price">$17</span></div>
+            <p>Gin, vermouth, Campari, blood orange.</p>
+          </article>
+          <article class="menu-card">
+            <div class="menu-head"><strong>Midnight Espresso Martini</strong><span class="price">$18</span></div>
+            <p>Vodka, espresso, vanilla, coffee liqueur.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container split">
+        <div class="about-media" role="img" aria-label="Elegant dining room"></div>
+        <div class="about-content">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Designed for the Night</h2>
+          <p class="section-copy">
+            Maison Noir blends classic hospitality with a modern visual identity. From the first pour
+            to the last plate, every detail is shaped to feel warm, elegant, and intentional.
+          </p>
+          <ul class="about-list">
+            <li>Seasonal ingredients</li>
+            <li>Curated cocktails</li>
+            <li>Private dining available</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <p class="eyebrow">Atmosphere</p>
+        <h2 class="section-title">Where the ocean breeze mingles with the allure of moonlight.</h2>
+        <p class="section-copy">Our noir dining location offers an unparalleled
+          experience, blending the tropical essence of beach-side outdoor seating with the opulent sophistication of
+          indoor noir dining.</p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item span-3">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+              alt="Cocktail bar interior" />
+          </div>
+          <div class="gallery-item span-3">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80"
+              alt="Plated dish" />
+          </div>
+          <div class="gallery-item span-2">
+            <img
+              src="https://images.unsplash.com/photo-1621873815234-781259c55de5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Cocktail close-up" />
+          </div>
+          <div class="gallery-item span-2">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80"
+              alt="Dining room" />
+          </div>
+          <div class="gallery-item span-2">
+            <img
+              src="https://images.unsplash.com/photo-1565895405227-31cffbe0cf86?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Candlelit table" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visit">
+      <div class="container">
+        <div class="visit-card">
+          <p class="eyebrow">Visit Us</p>
+          <h2 class="section-title">1160 W Main St, Houston, TX 77066</h2>
+          <p class="section-copy">Like a moonlit horizon, our noir beach dining awaits your arrival.</p>
+
+          <div class="visit-grid">
+            <p><strong>Mon–Thu</strong> 5 PM – 12 AM</p>
+            <p><strong>Phone</strong> (713) 555-0198</p>
+            <p><strong>Fri–Sat</strong> 5 PM – 1 AM</p>
+            <p><strong>Sun</strong> 5 PM – 11 PM</p>
+          </div>
+
+          <div class="btns" style="margin-top: 1.5rem;">
+            <a class="btn primary" onclick="openModal()">Reserve Table</a>
+            <div class="modal">
+              <div class="modal-content">
+                <h2>Make your Reservation</h2>
+                <p>Where the waves whisper secrets and shadows dance, our beachside noir dining experience is calling.
+                </p>
+                <form action="" method="POST" onsubmit="alert('Your table is reserved!')">
+                  <ol>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="visitor_name" required>
+
+                    <label for="arrival">Reservation Date:</label>
+                    <input type="date" id="arrival" name="arrival_date" required>
+
+                    <label for="guests">Number of Guests:</label>
+                    <input type="number" id="guests" name="total_guests" min="1" max="10">
+
+                    <label for="room-type">Table Location:</label>
+                    <select id="room-type" name="room_type">
+                      <option value="standard">Standard Indoor</option>
+                      <option value="standard">Standard Outdoor</option>
+                      <option value="deluxe">Private Indoors</option>
+                      <option value="suite">Private Outdoors</option>
+                    </select>
+                    <button type="submit">Submit Reservation</button>
+                  </ol>
+                </form>
+                <button class="close-btn" onclick=" closeModal()">×</button>
+              </div>
+            </div>
+            <a class="btn" href="#gallery">See Atmosphere</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="brand" style="font-size: 1.35rem;">Maison Noir</div>
+        <div>Refined Dining &amp; Cocktails</div>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#menu">Menu</a>
+        <a href="#visit">Reservations</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
