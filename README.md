@@ -2,7 +2,7 @@
 
 Personal portfolio showcasing full-stack, systems, and data engineering projects.
 
-**Live site:** https://incastil.github.io/Portfolio_Website
+**Live site:** https://ivanncastillo.com
 
 ---
 
